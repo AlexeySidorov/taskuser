@@ -6,7 +6,6 @@ using MvvmCross.Platform;
 using SQLite;
 using Task3.Core.Data;
 using Task3.Core.Services;
-using Task3.Domain;
 
 namespace Task3.Core.DataBaseService
 {

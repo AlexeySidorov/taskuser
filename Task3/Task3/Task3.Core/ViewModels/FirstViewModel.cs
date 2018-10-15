@@ -1,6 +1,6 @@
 using MvvmCross.Core.ViewModels;
 
-namespace Task3.Core.ViewModels
+namespace Task3.ViewModels
 {
     public class FirstViewModel
         : MvxViewModel

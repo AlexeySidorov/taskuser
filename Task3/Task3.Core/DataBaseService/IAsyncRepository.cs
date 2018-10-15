@@ -12,82 +12,81 @@ namespace Task3.Core.DataBaseService
     /// <typeparam name="TEntity"></typeparam>
     public interface IAsyncRepository<TEntity> : IDependency, IDisposable where TEntity : class, IEntity
     {
-       
         /// <summary>
         /// —оздать запись
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         Task<TEntity> CreateAsync(TEntity entity);
-        
+
         /// <summary>
         /// ћассова€ вставка записей
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
         Task CreateAllAsync(IEnumerable<TEntity> entities);
-        
+
         /// <summary>
         /// ќбновить запись
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         Task<TEntity> UpdateAsync(TEntity entity);
-        
+
         /// <summary>
         /// ”далить запись
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         Task DeleteAsync(TEntity entity);
-       
+
         /// <summary>
         /// ѕолучение записи по Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         Task<TEntity> GetAsync(long id);
-       
+
         /// <summary>
         /// ѕолучение записи по условию
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);
-      
+
         /// <summary>
         ///  оличество всех записей
         /// </summary>
         /// <returns></returns>
         Task<long> CountAsync();
-        
+
         /// <summary>
         ///  оличество записей удовлетвор€ющих условию
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
         Task<long> CountAsync(Expression<Func<TEntity, bool>> predicate);
-        
+
         /// <summary>
         /// «агрузить все записи
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<TEntity>> FetchAsync();
-        
+
         /// <summary>
         /// «агрузить записи по условию
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
         Task<IList<TEntity>> FetchAsync(Expression<Func<TEntity, bool>> predicate);
-       
+
         /// <summary>
         /// «агрузить все записи и отсортировать
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
         Task<IEnumerable<TEntity>> FetchAsync(Action<IOrderable<TEntity>> order);
-        
+
         /// <summary>
         /// «агрузить записи по условию и отсортировать
         /// </summary>
@@ -95,7 +94,15 @@ namespace Task3.Core.DataBaseService
         /// <param name="order"></param>
         /// <returns></returns>
         Task<IEnumerable<TEntity>> FetchAsync(Expression<Func<TEntity, bool>> predicate, Action<IOrderable<TEntity>> order);
-       
+
+        /// <summary>
+        /// «агрузить count записей начина€ с skip записи 
+        /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        Task<IList<TEntity>> FetchAsync(int skip, int count);
+
         /// <summary>
         /// «агрузить count записей начина€ с skip записи и отсортировать
         /// </summary>
@@ -104,7 +111,7 @@ namespace Task3.Core.DataBaseService
         /// <param name="count"></param>
         /// <returns></returns>
         Task<IList<TEntity>> FetchAsync(Action<IOrderable<TEntity>> order, int skip, int count);
-        
+
         /// <summary>
         /// «агрузить count записей начина€ с skip записи удовлетвор€ющих условию
         /// </summary>
@@ -113,7 +120,7 @@ namespace Task3.Core.DataBaseService
         /// <param name="count"></param>
         /// <returns></returns>
         Task<IEnumerable<TEntity>> FetchAsync(Expression<Func<TEntity, bool>> predicate, int skip, int count);
-        
+
         /// <summary>
         /// «агрузить count записей начина€ с skip записи удовлетвор€ющих условию и отсортировать
         /// </summary>
@@ -123,9 +130,9 @@ namespace Task3.Core.DataBaseService
         /// <param name="count"></param>
         /// <returns></returns>
         Task<IEnumerable<TEntity>> FetchAsync(Expression<Func<TEntity, bool>> predicate, Action<IOrderable<TEntity>> order, int skip, int count);
-        
-        
-/// <summary>
+
+
+        /// <summary>
         /// «агрузить count записей удовлетвор€ющих условию и отсортировать
         /// </summary>
         /// <param name="predicate"></param>
@@ -133,36 +140,7 @@ namespace Task3.Core.DataBaseService
         /// <param name="count"></param>
         /// <returns></returns>
         Task<IEnumerable<TEntity>> FetchAsync(Expression<Func<TEntity, bool>> predicate, Action<IOrderable<TEntity>> order, int count);
-        
-        ///// <summary>
-        ///// Join 2х таблиц
-        ///// </summary>
-        ///// <param name="sourceColumn"></param>
-        ///// <param name="destinationColumn"></param>
-        ///// <param name="sourceTableColumnSelection"></param>
-        ///// <param name="destinationTableColumnSelection"></param>
-        ///// <param name="sourceWhere"></param>
-        ///// <param name="destinationWhere"></param>
-        ///// <typeparam name="TSourceTable"></typeparam>
-        ///// <typeparam name="TDestinationTable"></typeparam>
-        ///// <returns></returns>
-        //Task<IEnumerable<TEntity>> Join<TSourceTable, TDestinationTable>(
-        //Expression<Func<TSourceTable, object>> sourceColumn,
-        //Expression<Func<TDestinationTable, object>> destinationColumn,
-        //Expression<Func<TSourceTable, object>> sourceTableColumnSelection = null,
-        //Expression<Func<TDestinationTable, object>> destinationTableColumnSelection = null,
-        //Expression<Func<TSourceTable, bool>> sourceWhere = null,
-        //Expression<Func<TDestinationTable, bool>> destinationWhere = null);
 
-        /*  Task<IEnumerable<TEntity>> Join<TSourceTable, TDestinationTable>(
-        Expression<Func<TSourceTable, object>> sourceColumn,
-Expression<Func<TDestinationTable, object>> destinationColumn,
-Expression<Func<TSourceTable, object>> sourceTableColumnSelection = null,
-Expression<Func<TDestinationTable, object>> destinationTableColumnSelection = null,
-Expression<Func<TSourceTable, bool>> sourceWhere = null,
-Expression<Func<TDestinationTable, bool>> destinationWhere = null, int? skip = null, int? count = null);
-        */
-        //Task<T> QueryScalar<T>(string sqlQuery);
         /// <summary>
         ///  Join 2х таблиц
         /// </summary>

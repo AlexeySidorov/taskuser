@@ -7,7 +7,6 @@ using MvvmCross.Platform;
 using SQLite;
 using Task3.Core.Data;
 using Task3.Core.Services;
-using Task3.Domain;
 
 namespace Task3.Core.DataBaseService
 {
@@ -290,6 +289,18 @@ namespace Task3.Core.DataBaseService
                      return Query(order, list);
                  }
              }).ConfigureAwait(false);
+        }
+
+        public async Task<IList<TEntity>> FetchAsync(int skip, int count)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                using (_lock.Lock())
+                {
+                    var list = Connection.Table<TEntity>().Skip(skip).Take(count);
+                    return list.ToList();
+                }
+            }).ConfigureAwait(false);
         }
 
         /// <summary>

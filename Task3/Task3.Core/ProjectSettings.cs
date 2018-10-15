@@ -1,10 +1,10 @@
-﻿namespace Task3.Domain
+﻿namespace Task3.Core
 {
     public static class ProjectSettings
     {
         /// <summary>
         /// Имя базы данных
         /// </summary>
-        public const string DbName = "task3.db3";
+        public static string DbName { get; set; }
     }
 }
