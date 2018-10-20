@@ -25,4 +25,6 @@
   3. Экран списка пользователей - переход по кнопке back должен обеспечивать переход по всей иерархии открытых экранов, 
   а не вести на экран списка
 
+Дизайн:
+
 ![alt text](https://github.com/AlexeySidorov/taskuser/blob/master/task3_preview.jpg)
