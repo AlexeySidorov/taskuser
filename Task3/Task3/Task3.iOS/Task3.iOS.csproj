@@ -126,10 +126,11 @@
     <Compile Include="LoadingOverlay.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <None Include="Info.plist" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Infrastructure\DataSources\UserViewCell.xib" />
-    <None Include="Infrastructure\DataSources\arrow_right.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />

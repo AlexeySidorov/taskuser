@@ -38,6 +38,7 @@ namespace Task3.iOS.Views
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
+
             NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB(114, 0, 202);
             NavigationController.NavigationBar.TintColor = UIColor.White;
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White });

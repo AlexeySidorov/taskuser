@@ -27,6 +27,8 @@ namespace Task3.iOS.Infrastructure.DataSources
             if (cell is IMvxDataConsumer bindable)
                 bindable.DataContext = item;
 
+            cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+
             return cell;
         }
     }

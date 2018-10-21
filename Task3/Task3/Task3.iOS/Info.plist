@@ -12,8 +12,6 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>MinimumOSVersion</key>
-	<string>10.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -39,5 +37,41 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>UIStatusBarTintParameters</key>
+	<dict>
+		<key>UINavigationBar</key>
+		<dict>
+			<key>Style</key>
+			<string>UIBarStyleDefault</string>
+			<key>Translucent</key>
+			<false/>
+			<key>TintColor</key>
+			<dict>
+				<key>Red</key>
+				<real>0.843137254901961</real>
+				<key>Green</key>
+				<real>0.298039215686275</real>
+				<key>Blue</key>
+				<real>0.705882352941177</real>
+			</dict>
+		</dict>
+	</dict>
+	<key>UIStatusBarHidden</key>
+	<true/>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>MKDirectionsRequest</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.apple.maps.directionsrequest</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
