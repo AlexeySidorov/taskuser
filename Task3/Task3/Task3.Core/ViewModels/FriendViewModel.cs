@@ -1,9 +1,7 @@
-using MvvmCross.Core.ViewModels;
 
 namespace Task3.ViewModels
 {
-    public class FirstViewModel
-        : MvxViewModel
+    public class FriendViewModel : BaseViewModel
     {
         string hello = "Hello MvvmCross";
         public string Hello

@@ -42,7 +42,7 @@ namespace Task3.Domain.Models
         public IList<string> Tags { get; set; }
 
         [Ignore]
-        public IList<int> Friends { get; set; }
+        public IList<Friend> Friends { get; set; }
 
         public string FavoriteFruit { get; set; }
 

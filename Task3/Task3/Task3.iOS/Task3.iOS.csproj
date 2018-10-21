@@ -86,19 +86,32 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BTProgressHUD">
-      <Version>1.2.0.3</Version>
+      <Version>1.2.0.6</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Binding" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Core" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Platform" Version="5.7.0" />
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.5.231</Version>
+    </PackageReference>
     <PackageReference Include="Toast.iOS">
       <Version>1.2.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebugTrace.cs" />
+    <Compile Include="Infrastructure\Converters\ActiveUserToImageConvert.cs" />
+    <Compile Include="Infrastructure\Converters\NullToTextConvert.cs" />
     <Compile Include="Infrastructure\Converters\HiddenConvert.cs" />
+    <Compile Include="Infrastructure\DataSources\UserTableSource.cs" />
+    <Compile Include="Infrastructure\DataSources\UserViewCell.cs" />
+    <Compile Include="Infrastructure\DataSources\UserViewCell.designer.cs">
+      <DependentUpon>UserViewCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Extensions\UIColorExtension.cs" />
     <Compile Include="Infrastructure\Extensions\UIImageExtension.cs" />
     <Compile Include="Infrastructure\IOSDeviceHardware.cs" />
@@ -110,18 +123,21 @@
     <Compile Include="Infrastructure\Utils\DateUtility.cs" />
     <Compile Include="Infrastructure\Utils\DeviceSpecific.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="LoadingOverlay.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <InterfaceDefinition Include="Infrastructure\DataSources\UserViewCell.xib" />
+    <None Include="Infrastructure\DataSources\arrow_right.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
-    <Compile Include="Views\FirstView.designer.cs">
-      <DependentUpon>FirstView.cs</DependentUpon>
+    <Compile Include="Views\UsersView.designer.cs">
+      <DependentUpon>UsersView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FirstView.cs" />
-    <InterfaceDefinition Include="Views\FirstView.storyboard">
+    <Compile Include="Views\UsersView.cs" />
+    <InterfaceDefinition Include="Views\UsersView.storyboard">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -136,6 +152,9 @@
     <Content Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\action_user.imageset\action_user.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -205,11 +224,48 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5_2x.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\apple.imageset\apple.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Apple.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\arrow_right.imageset\arrow_right.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\banan.imageset\banan.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Banan.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\arrow_right.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\not_action_user.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\not_action_user.imageset\not_action_user.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\strawberry.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\action_user.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\strawberry.imageset\strawberry.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Task3.Core\Task3.Core.csproj">
       <Project>{DFB8A7AD-A599-4E8B-A977-1334696CBAFC}</Project>
       <Name>Task3.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Task3.Domain\Task3.Domain.csproj">
+      <Project>{D9843D7A-4EAE-4300-93AF-812583B5E2F9}</Project>
+      <Name>Task3.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Task3.Core\Task3.csproj">
       <Project>{7263181A-A3FF-411F-A5C4-13C27B34D617}</Project>

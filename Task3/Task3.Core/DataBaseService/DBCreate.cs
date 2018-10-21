@@ -16,7 +16,7 @@ namespace Task3.Core.DataBaseService
     {
         public void CreateDataBase(List<Assembly> assemblies)
         {
-            using (var connection = Mvx.Resolve<IDataBaseService>().GetConnection(Mvx.Resolve<IPlatformService>().GetLocalFilePath(ProjectSettings.DbName)))
+            using (var connection = Mvx.Resolve<IDataBaseService>().GetConnection(ProjectSettings.DbName))
             {
                 foreach (var types in assemblies.Select(assembly => assembly.DefinedTypes.Where(
                                     t => t.ImplementedInterfaces.Any(i => i == typeof(IEntity)) && t.IsClass)).ToList())

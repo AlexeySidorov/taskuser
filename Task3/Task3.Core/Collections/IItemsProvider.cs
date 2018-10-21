@@ -8,7 +8,7 @@ namespace Task3.Core.Collections
     /// Represents a provider of collection details.
     /// </summary>
     /// <typeparam name="T">The type of items in the collection.</typeparam>
-    public interface IItemsProvider<T>
+    public interface ItemsProvider<T>
     {
         /// <summary>
         /// Fetches the total number of items available.

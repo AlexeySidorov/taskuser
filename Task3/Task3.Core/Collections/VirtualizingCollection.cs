@@ -29,7 +29,7 @@ namespace Task3.Core.Collections
         /// <param name="itemsProvider">The items provider.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <param name="pageTimeout">The page timeout.</param>
-        public VirtualizingCollection(IItemsProvider<T> itemsProvider, int pageSize, int pageTimeout)
+        public VirtualizingCollection(ItemsProvider<T> itemsProvider, int pageSize, int pageTimeout)
         {
             _itemsProvider = itemsProvider;
             _pageSize = pageSize;
@@ -41,7 +41,7 @@ namespace Task3.Core.Collections
         /// </summary>
         /// <param name="itemsProvider">The items provider.</param>
         /// <param name="pageSize">Size of the page.</param>
-        public VirtualizingCollection(IItemsProvider<T> itemsProvider, int pageSize)
+        public VirtualizingCollection(ItemsProvider<T> itemsProvider, int pageSize)
         {
             _itemsProvider = itemsProvider;
             _pageSize = pageSize;
@@ -51,7 +51,7 @@ namespace Task3.Core.Collections
         /// Initializes a new instance of the <see cref="VirtualizingCollection&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="itemsProvider">The items provider.</param>
-        public VirtualizingCollection(IItemsProvider<T> itemsProvider)
+        public VirtualizingCollection(ItemsProvider<T> itemsProvider)
         {
             _itemsProvider = itemsProvider;
         }
@@ -60,13 +60,13 @@ namespace Task3.Core.Collections
 
         #region ItemsProvider
 
-        private readonly IItemsProvider<T> _itemsProvider;
+        private readonly ItemsProvider<T> _itemsProvider;
 
         /// <summary>
         /// Gets the items provider.
         /// </summary>
         /// <value>The items provider.</value>
-        public IItemsProvider<T> ItemsProvider
+        public ItemsProvider<T> ItemsProvider
         {
             get { return _itemsProvider; }
         }

@@ -12,6 +12,9 @@
     <PackageReference Include="MvvmCross.Binding" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Core" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Platform" Version="5.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Refit" Version="4.5.6" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
   </ItemGroup>
 
   <ItemGroup>

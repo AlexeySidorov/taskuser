@@ -12,7 +12,7 @@ namespace Task3.Core.DataBaseService
 {
     public class AsyncRepository<TEntity> : IAsyncRepository<TEntity> where TEntity : class, IEntity, new()
     {
-        public SQLiteConnection Connection => Mvx.Resolve<IDataBaseService>().GetConnection(Mvx.Resolve<IPlatformService>().GetLocalFilePath(ProjectSettings.DbName));
+        public SQLiteConnection Connection => Mvx.Resolve<IDataBaseService>().GetConnection(ProjectSettings.DbName);
 
         private readonly AsyncLock _lock = new AsyncLock();
 

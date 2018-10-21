@@ -35,6 +35,18 @@ namespace Task3.Services
         /// </summary>
         /// <returns></returns>
         Task<IList<User>> GetAllUsers(int skip, int count);
+
+        /// <summary>
+        /// Есть ли пользователи в базе
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> IsUsers();
+
+        /// <summary>
+        /// Количество пользователей
+        /// </summary>
+        /// <returns></returns>
+        Task<int> CountUsers();
     }
 
     public class UserService : AsyncBaseDataService<User>, IUserService
@@ -50,6 +62,7 @@ namespace Task3.Services
             _tagRepository = tagRepository;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Добавить пользователя
         /// </summary>
@@ -64,7 +77,7 @@ namespace Task3.Services
 
                 if (user.Friends?.Count > 0)
                 {
-                    var friends = user.Friends.Select(f => new Friend() { FriendId = f, UserId = user.Id }).ToList();
+                    var friends = user.Friends.Select(f => new Friend() { FriendId = f.FriendId, UserId = user.Id }).ToList();
                     await _friendRepository.CreateAllAsync(friends);
                 }
 
@@ -76,6 +89,7 @@ namespace Task3.Services
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Добавить пользователей
         /// </summary>
@@ -87,6 +101,7 @@ namespace Task3.Services
                 await AddUser(user);
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Получить инфу о пользователе
         /// </summary>
@@ -97,8 +112,7 @@ namespace Task3.Services
             var result = await _repository.GetAsync(u => u.Id == id);
             if (result != null)
             {
-                var friends = await _friendRepository.FetchAsync(f => f.UserId == result.Id);
-                result.Friends = friends.Count == 0 ? new List<int>() : friends.Select(f => f.FriendId).ToList();
+                result.Friends = await _friendRepository.FetchAsync(f => f.UserId == result.Id);
 
                 var tags = await _tagRepository.FetchAsync(t => t.UserId == result.Id);
                 result.Tags = tags.Count == 0 ? new List<string>() : tags.Select(t => t.Name).ToList();
@@ -107,6 +121,7 @@ namespace Task3.Services
             return result;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Получить инфу о пользователе
         /// </summary>
@@ -118,8 +133,7 @@ namespace Task3.Services
             // ReSharper disable once PossibleMultipleEnumeration
             foreach (var user in users)
             {
-                var friends = await _friendRepository.FetchAsync(f => f.UserId == user.Id);
-                user.Friends = friends.Count == 0 ? new List<int>() : friends.Select(f => f.FriendId).ToList();
+                user.Friends = await _friendRepository.FetchAsync(f => f.UserId == user.Id);
 
                 var tags = await _tagRepository.FetchAsync(t => t.UserId == user.Id);
                 user.Tags = tags.Count == 0 ? new List<string>() : tags.Select(t => t.Name).ToList();
@@ -127,6 +141,27 @@ namespace Task3.Services
 
             // ReSharper disable once PossibleMultipleEnumeration
             return users.ToList();
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Есть ли пользователи в базе
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> IsUsers()
+        {
+            var users = await _repository.CountAsync();
+            return users != 0;
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Количество пользователей
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int> CountUsers()
+        {
+            return (int)await _repository.CountAsync();
         }
     }
 }

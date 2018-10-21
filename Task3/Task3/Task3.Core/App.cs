@@ -14,14 +14,15 @@ namespace Task3
 {
     public class App : MvvmCross.Core.ViewModels.MvxApplication
     {
-        public override async void Initialize()
+        public override void Initialize()
         {
+            
             CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            ProjectSettings.DbName = "task3.db3";
+            ProjectSettings.DbName = "task3.db";
 
             //Регистрация репозиториев
             Mvx.RegisterType<IAsyncRepository<User>, AsyncRepository<User>>();
@@ -32,9 +33,9 @@ namespace Task3
             typeof(UserService).GetTypeInfo().Assembly.CreatableTypes().Where(t => t.Name.EndsWith("Service")).AsInterfaces();
 
             //Создание Базы данных
-            await Task.Run(() => new DataBase().CreateDataBase(new List<Assembly>() { typeof(User).GetTypeInfo().Assembly }));
+            Task.Run(() => new DataBase().CreateDataBase(new List<Assembly>() { typeof(User).GetTypeInfo().Assembly }));
 
-            RegisterNavigationServiceAppStart<FirstViewModel>();
+            RegisterNavigationServiceAppStart<UsersViewModel>();
         }
     }
 }

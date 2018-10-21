@@ -19,7 +19,7 @@ namespace Task3.Core.Collections
         /// Initializes a new instance of the <see cref="AsyncVirtualizingCollection&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="itemsProvider">The items provider.</param>
-        public AsyncVirtualizingCollection(IItemsProvider<T> itemsProvider)
+        public AsyncVirtualizingCollection(ItemsProvider<T> itemsProvider)
             : base(itemsProvider)
         {
             _synchronizationContext = SynchronizationContext.Current;
@@ -30,7 +30,7 @@ namespace Task3.Core.Collections
         /// </summary>
         /// <param name="itemsProvider">The items provider.</param>
         /// <param name="pageSize">Size of the page.</param>
-        public AsyncVirtualizingCollection(IItemsProvider<T> itemsProvider, int pageSize)
+        public AsyncVirtualizingCollection(ItemsProvider<T> itemsProvider, int pageSize)
             : base(itemsProvider, pageSize)
         {
             _synchronizationContext = SynchronizationContext.Current;
@@ -42,7 +42,7 @@ namespace Task3.Core.Collections
         /// <param name="itemsProvider">The items provider.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <param name="pageTimeout">The page timeout.</param>
-        public AsyncVirtualizingCollection(IItemsProvider<T> itemsProvider, int pageSize, int pageTimeout)
+        public AsyncVirtualizingCollection(ItemsProvider<T> itemsProvider, int pageSize, int pageTimeout)
             : base(itemsProvider, pageSize, pageTimeout)
         {
             _synchronizationContext = SynchronizationContext.Current;

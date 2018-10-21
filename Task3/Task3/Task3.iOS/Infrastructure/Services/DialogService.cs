@@ -12,8 +12,12 @@ namespace Task3.iOS.Infrastructure.Services
     public class DialogService : IDialogService
     {
         private UITextField _field;
-        private UIView _mainView;
-        private UIImageView _alertView;
+
+        public Task<ButtonDialog> ShowMessage(string title, string message, string firstButtonContent, string nextButtonContent,
+            string lastButtonContent)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Диалоговое окно с двумя кнопками
@@ -112,6 +116,12 @@ namespace Task3.iOS.Infrastructure.Services
             return await tcs.Task;
         }
 
+        public async Task<string> ShowInputDialog(string title, string hint = null, string messageInput = null,
+            DialogInputType type = DialogInputType.None, bool isEmpty = false)
+        {
+            return await ShowInputDialog(title, hint, messageInput, isEmpty);
+        }
+
         /// <summary>
         /// Диалоговое окно с полем ввода
         /// </summary>
@@ -149,191 +159,6 @@ namespace Task3.iOS.Infrastructure.Services
             return localDate;
         }
 
-        /// <summary>
-        /// Shows the custom message dialoig.
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="text">Text.</param>
-        /// <param name="firstButtonName"></param>
-        /// <param name="nextButtonName"></param>
-        public async Task<ButtonDialog> ShowCustomMessageDialog(string title, string text, string firstButtonName, string nextButtonName)
-        {
-            var tcs = new TaskCompletionSource<ButtonDialog>();
-            var window = UIApplication.SharedApplication.KeyWindow;
-            var viewController = window.RootViewController;
 
-            if (viewController != null)
-            {
-                _mainView = new UIView(new CGRect(0, 0, UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height)) { BackgroundColor = UIColor.Black };
-                _mainView.Layer.Opacity = 0.7f;
-
-                var padding = UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad ? 230f : 80f;
-                _alertView = new UIImageView(new CGRect(0, 0, UIScreen.MainScreen.Bounds.Width - padding, 270f))
-                {
-                    Center = new CGPoint(UIScreen.MainScreen.Bounds.Width / 2, UIScreen.MainScreen.Bounds.Height / 2),
-                    Image = UIImage.FromBundle("background_dialog"),
-                    UserInteractionEnabled = true
-                };
-
-                var label = new UILabel(new CGRect(18f, (_alertView.Frame.Width / 2) / 2, _alertView.Frame.Width - 36f, _alertView.Frame.Width / 2 - 40f))
-                {
-                    TextColor = UIColor.Black,
-                    Font = UIFont.SystemFontOfSize(14f, UIFontWeight.Medium),
-                    Lines = 4,
-                    TextAlignment = UITextAlignment.Center,
-                    Text = text
-                };
-
-                var close = new UIImageView(UIImage.FromBundle("close_dialog"))
-                {
-                    Frame = new CGRect(_alertView.Frame.Width - 27.5f, 15f, 12.5f, 12.5f),
-                    UserInteractionEnabled = true
-                };
-
-                var labelTitle = new UILabel(new CGRect(16f, 10f, _alertView.Frame.Width - close.Frame.Width - 27.5f, 21f))
-                {
-                    TextColor = UIColor.Black,
-                    Font = UIFont.SystemFontOfSize(15f, UIFontWeight.Medium),
-                    Lines = 1,
-                    TextAlignment = UITextAlignment.Center,
-                    Text = title
-                };
-
-                var button = new UIButton(new CGRect(12f, _alertView.Frame.Height - 55f, _alertView.Frame.Width - 24f, 70f));
-                button.SetImage(UIImage.FromBundle("button_normal"), UIControlState.Normal);
-                button.SetImage(UIImage.FromBundle("button_disabled"), UIControlState.Disabled);
-
-                var labelTitleButton = new UILabel(new CGRect(0f, 0f, button.Frame.Width, 42f))
-                {
-                    TextColor = UIColor.White,
-                    TextAlignment = UITextAlignment.Center,
-                    Text = firstButtonName,
-                    Font = UIFont.SystemFontOfSize(15f, UIFontWeight.Medium)
-                };
-
-                button.AddSubview(labelTitleButton);
-                button.TouchUpInside += (sender, args) =>
-                {
-                    _mainView.RemoveFromSuperview();
-                    _alertView.RemoveFromSuperview();
-                    tcs.TrySetResult(ButtonDialog.Primary);
-                };
-
-                var buttonCancel = new UIButton(new CGRect(12f, _alertView.Frame.Height - 110f, _alertView.Frame.Width - 24f, 70f));
-                buttonCancel.SetImage(UIImage.FromBundle("button_normal"), UIControlState.Normal);
-                buttonCancel.SetImage(UIImage.FromBundle("button_disabled"), UIControlState.Disabled);
-
-                var labelTitleButtonCancel = new UILabel(new CGRect(0f, 0f, buttonCancel.Frame.Width, 42f))
-                {
-                    TextColor = UIColor.White,
-                    TextAlignment = UITextAlignment.Center,
-                    Text = nextButtonName,
-                    Font = UIFont.SystemFontOfSize(15f, UIFontWeight.Regular)
-                };
-
-                buttonCancel.AddSubview(labelTitleButtonCancel);
-                buttonCancel.TouchUpInside += (sender, args) =>
-                {
-                    _mainView.RemoveFromSuperview();
-                    _alertView.RemoveFromSuperview();
-                    tcs.TrySetResult(ButtonDialog.Secondary);
-                };
-
-                close.AddGestureRecognizer(new UITapGestureRecognizer(() =>
-                {
-                    _mainView.RemoveFromSuperview();
-                    _alertView.RemoveFromSuperview();
-                    tcs.TrySetResult(ButtonDialog.Close);
-                }));
-
-                _alertView.AddSubviews(label, close, labelTitle, button, buttonCancel);
-                viewController.View.AddSubviews(_mainView, _alertView);
-            }
-
-            return await tcs.Task;
-        }
-
-        /// <summary>
-        /// Shows the custom message dialoig.
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="text">Text.</param>
-        /// <param name="firstButtonName"></param>
-        public async Task<ButtonDialog> ShowCustomMessageDialog(string title, string text, string firstButtonName)
-        {
-            var tcs = new TaskCompletionSource<ButtonDialog>();
-            var window = UIApplication.SharedApplication.KeyWindow;
-            var viewController = window.RootViewController;
-
-            if (viewController != null)
-            {
-                _mainView = new UIView(new CGRect(0, 0, UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height)) { BackgroundColor = UIColor.Black };
-                _mainView.Layer.Opacity = 0.7f;
-
-                var padding = UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad ? 230f : 80f;
-                _alertView = new UIImageView(new CGRect(0, 0, UIScreen.MainScreen.Bounds.Width - padding, 220f))
-                {
-                    Center = new CGPoint(UIScreen.MainScreen.Bounds.Width / 2, UIScreen.MainScreen.Bounds.Height / 2),
-                    Image = UIImage.FromBundle("background_dialog"),
-                    UserInteractionEnabled = true
-                };
-
-                var label = new UILabel(new CGRect(18f, (_alertView.Frame.Width / 2) / 2, _alertView.Frame.Width - 36f, _alertView.Frame.Width / 2 - 40f))
-                {
-                    TextColor = UIColor.Black,
-                    Font = UIFont.SystemFontOfSize(14f, UIFontWeight.Medium),
-                    Lines = 4,
-                    TextAlignment = UITextAlignment.Center,
-                    Text = text
-                };
-
-                var close = new UIImageView(UIImage.FromBundle("close_dialog"))
-                {
-                    Frame = new CGRect(_alertView.Frame.Width - 27.5f, 15f, 12.5f, 12.5f),
-                    UserInteractionEnabled = true
-                };
-
-                var labelTitle = new UILabel(new CGRect(16f, 10f, _alertView.Frame.Width - close.Frame.Width - 27.5f, 21f))
-                {
-                    TextColor = UIColor.Black,
-                    Font = UIFont.SystemFontOfSize(15f, UIFontWeight.Medium),
-                    Lines = 1,
-                    TextAlignment = UITextAlignment.Center,
-                    Text = title
-                };
-
-                var button = new UIButton(new CGRect(12f, _alertView.Frame.Height - 55f, _alertView.Frame.Width - 24f, 70f));
-                button.SetImage(UIImage.FromBundle("button_normal"), UIControlState.Normal);
-                button.SetImage(UIImage.FromBundle("button_disabled"), UIControlState.Disabled);
-
-                var labelTitleButton = new UILabel(new CGRect(0f, 0f, button.Frame.Width, 42f))
-                {
-                    TextColor = UIColor.White,
-                    TextAlignment = UITextAlignment.Center,
-                    Text = firstButtonName,
-                    Font = UIFont.SystemFontOfSize(15f, UIFontWeight.Medium)
-                };
-
-                button.AddSubview(labelTitleButton);
-                button.TouchUpInside += (sender, args) =>
-                {
-                    _mainView.RemoveFromSuperview();
-                    _alertView.RemoveFromSuperview();
-                    tcs.TrySetResult(ButtonDialog.Primary);
-                };
-
-                close.AddGestureRecognizer(new UITapGestureRecognizer(() =>
-                {
-                    _mainView.RemoveFromSuperview();
-                    _alertView.RemoveFromSuperview();
-                    tcs.TrySetResult(ButtonDialog.Close);
-                }));
-
-                _alertView.AddSubviews(label, close, labelTitle, button);
-                viewController.View.AddSubviews(_mainView, _alertView);
-            }
-
-            return await tcs.Task;
-        }
     }
 }

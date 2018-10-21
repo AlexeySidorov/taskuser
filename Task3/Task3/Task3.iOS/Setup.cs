@@ -27,14 +27,7 @@ namespace Task3.iOS
 
         protected override IMvxApplication CreateApp()
         {
-            Mvx.RegisterType<IMvxBindingContext, MvxBindingContext>();
-            Mvx.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
-            Mvx.LazyConstructAndRegisterSingleton<IDataBaseService, DataBaseService>();
-            Mvx.LazyConstructAndRegisterSingleton<IPlatformService, PlatformService>();
-            Mvx.LazyConstructAndRegisterSingleton<IConnectionService, ConnectionService>();
-            Mvx.LazyConstructAndRegisterSingleton<IProgressDialogService, ProgressDialogService>();
-
-            return new App();
+            return new Task3.App();
         }
 
         protected override IMvxTrace CreateDebugTrace()
@@ -51,6 +44,18 @@ namespace Task3.iOS
         {
             base.FillValueConverters(registry);
             registry.AddOrOverwrite("CommandParameter", new MvxCommandParameterValueConverter());
+        }
+
+        protected override void InitializeFirstChance()
+        {
+            base.InitializeFirstChance();
+
+            Mvx.RegisterType<IMvxBindingContext, MvxBindingContext>();
+            Mvx.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
+            Mvx.LazyConstructAndRegisterSingleton<IDataBaseService, DataBaseService>();
+            Mvx.LazyConstructAndRegisterSingleton<IPlatformService, PlatformService>();
+            Mvx.LazyConstructAndRegisterSingleton<IConnectionService, ConnectionService>();
+            Mvx.LazyConstructAndRegisterSingleton<IProgressDialogService, ProgressDialogService>();
         }
     }
 }
