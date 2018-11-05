@@ -10,6 +10,8 @@ namespace Task3.iOS.Views
     [MvxFromStoryboard]
     public partial class UsersView : MvxViewController<UsersViewModel>
     {
+        private UserTableSource _source;
+
         public UsersView(IntPtr handle) : base(handle)
         {
         }
@@ -24,15 +26,14 @@ namespace Task3.iOS.Views
 
             base.ViewDidLoad();
 
-            var source = new UserTableSource(UsersTableView);
-            var set = this.CreateBindingSet<UsersView, UsersViewModel>();
-            set.Bind(source).To(vm => vm.Users);
-            set.Apply();
+            _source = new UserTableSource(UsersTableView);
 
-            UsersTableView.Source = source;
+            UsersTableView.Source = _source;
             UsersTableView.RowHeight = 86f;
             UsersTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
             UsersTableView.ReloadData();
+
+            Binding();
         }
 
         public override void ViewWillAppear(bool animated)
@@ -42,6 +43,13 @@ namespace Task3.iOS.Views
             NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB(114, 0, 202);
             NavigationController.NavigationBar.TintColor = UIColor.White;
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White });
+        }
+
+        private void Binding()
+        {
+            var set = this.CreateBindingSet<UsersView, UsersViewModel>();
+            set.Bind(_source).To(vm => vm.Users).Apply();
+            set.Bind(_source).For(s => s.SelectionChangedCommand).To(vm => vm.SelectUserСommand).Apply();
         }
     }
 }

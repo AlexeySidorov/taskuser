@@ -1,3 +1,5 @@
+using System.Windows.Input;
+using MvvmCross.Core.ViewModels;
 using Task3.Core.Collections;
 using Task3.Core.Services;
 using Task3.Domain.Models;
@@ -12,6 +14,7 @@ namespace Task3.ViewModels
         private readonly IDialogService _dialogService;
         private readonly IUserService _userService;
         private AsyncVirtualizingCollection<User> _users;
+        private MvxCommand<User> _selectedUserCommand;
 
         public UsersViewModel(IConnectionService connectionService, IDialogService dialogService, IUserService userService)
         {
@@ -29,6 +32,15 @@ namespace Task3.ViewModels
             {
                 _users = value;
                 RaisePropertyChanged(() => Users);
+            }
+        }
+
+        public ICommand SelectUser—ommand
+        {
+            get
+            {
+                _selectedUserCommand = _selectedUserCommand ?? new MvxCommand<User>(MySelectUser);
+                return _selectedUserCommand;
             }
         }
 
@@ -57,6 +69,12 @@ namespace Task3.ViewModels
             }
 
             Users = new AsyncVirtualizingCollection<User>(new UserProvider(), 6);
+        }
+
+        private void MySelectUser(User user)
+        {
+            if (user != null && user.IsActive)
+                ShowViewModel<FriendViewModel>(user);
         }
     }
 }

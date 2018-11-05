@@ -92,6 +92,9 @@
     <PackageReference Include="MvvmCross.Binding" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Core" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Platform" Version="5.7.0" />
+    <PackageReference Include="MvvmCross.Plugin.JsonLocalization">
+      <Version>6.2.1</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>
@@ -103,7 +106,12 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\TitleWithSubTitle.cs" />
     <Compile Include="DebugTrace.cs" />
+    <Compile Include="HeaderView.cs" />
+    <Compile Include="HeaderView.designer.cs">
+      <DependentUpon>HeaderView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Converters\ActiveUserToImageConvert.cs" />
     <Compile Include="Infrastructure\Converters\NullToTextConvert.cs" />
     <Compile Include="Infrastructure\Converters\HiddenConvert.cs" />
@@ -131,9 +139,19 @@
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Infrastructure\DataSources\UserViewCell.xib" />
+    <InterfaceDefinition Include="Views\Friend\FriendView.storyboard" />
+    <InterfaceDefinition Include="Views\Friend\HeaderView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
+    <Compile Include="TitleWithSubTitle.cs" />
+    <Compile Include="TitleWithSubTitle.designer.cs">
+      <DependentUpon>TitleWithSubTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Friend\FriendView.cs" />
+    <Compile Include="Views\Friend\FriendView.designer.cs">
+      <DependentUpon>FriendView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\UsersView.designer.cs">
       <DependentUpon>UsersView.cs</DependentUpon>
     </Compile>

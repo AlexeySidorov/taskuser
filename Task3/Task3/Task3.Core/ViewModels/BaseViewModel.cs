@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
-using MvvmCross.Platform.Platform;
+using Newtonsoft.Json;
 
 namespace Task3.ViewModels
 {
@@ -20,7 +20,7 @@ namespace Task3.ViewModels
         private const string ParameterName = "parameter";
         protected void ShowViewModel<TViewModel>(object parameter) where TViewModel : IMvxViewModel
         {
-            var text = Mvx.Resolve<IMvxJsonConverter>().SerializeObject(parameter);
+            var text = JsonConvert.SerializeObject(parameter);
             base.ShowViewModel<TViewModel>(new Dictionary<string, string>()
             {
                 {ParameterName, text}
@@ -38,14 +38,13 @@ namespace Task3.ViewModels
 
     public abstract class ViewModelBase<TInit> : BaseViewModel
     {
-
         /// <summary>
         /// Инициализация модели
         /// </summary>
         /// <param name="parameter"></param>
         public void Init(string parameter)
         {
-            var deserialized = Mvx.Resolve<IMvxJsonConverter>().DeserializeObject<TInit>(parameter);
+            var deserialized = JsonConvert.DeserializeObject<TInit>(parameter);
             RealInit(deserialized);
         }
 

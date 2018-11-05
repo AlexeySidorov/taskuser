@@ -3,11 +3,18 @@ namespace Task3.ViewModels
 {
     public class FriendViewModel : BaseViewModel
     {
-        string hello = "Hello MvvmCross";
-        public string Hello
+        public FriendViewModel()
         {
-            get { return hello; }
-            set { SetProperty(ref hello, value); }
+            
+        }
+
+        /// <summary>
+        /// Получение данных из viewmodel
+        /// </summary>
+        /// <param name="parameter"></param>
+        public void Init(string parameter)
+        {
+            //!string.IsNullOrEmpty(parameter) ? JsonConvert.DeserializeObject<string>(parameter) : string.Empty;
         }
     }
 }

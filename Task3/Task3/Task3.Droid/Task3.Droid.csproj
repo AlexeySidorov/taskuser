@@ -55,6 +55,9 @@
     <PackageReference Include="MvvmCross.Droid.Support.Fragment" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Droid.Support.V7.AppCompat" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Droid.Support.V7.RecyclerView" Version="5.7.0" />
+    <PackageReference Include="MvvmCross.Plugin.JsonLocalization">
+      <Version>6.2.1</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>
