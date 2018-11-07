@@ -37,27 +37,13 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:focusable ="true"
-            android:focusableInTouchMode="true"/>
-
-        <ProgressBar
-            android:id="@+id/main_progress"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:indeterminateOnly="true"
-            android:indeterminateTint="@color/red"
-            android:keepScreenOn="true"
-            android:theme="@style/CircularProgress"
-            android:visibility="gone" />
-
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </android.support.design.widget.CoordinatorLayout>
 
     <FrameLayout
         android:id="@+id/navigation_frame"
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_width="wrap_content"
         android:layout_gravity="left|start" />
 
 </android.support.v4.widget.DrawerLayout>

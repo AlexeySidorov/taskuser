@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,135 +10,135 @@
         <view contentMode="scaleToFill" id="1">
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="178" translatesAutoresizingMaskIntoConstraints="NO">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="178">
                     <rect key="frame" x="318" y="28" width="80" height="80"/>
                     <constraints>
-                        <constraint id="179" firstAttribute="height" constant="80"/>
-                        <constraint id="180" firstAttribute="width" constant="80"/>
+                        <constraint firstAttribute="height" constant="80" id="179"/>
+                        <constraint firstAttribute="width" constant="80" id="180"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="181" translatesAutoresizingMaskIntoConstraints="NO" text="Alexey Sidorov" misplaced="YES">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Alexey Sidorov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="181">
                     <rect key="frame" x="17" y="40" width="281" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="209"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
-                    <constraints>
-                        <constraint id="209" firstAttribute="height" constant="21"/>
-                    </constraints>
+                    <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="182" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="182">
                     <rect key="frame" x="17" y="19" width="281" height="21"/>
-                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                    <color key="textColor" colorSpace="calibratedRGB" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1"/>
-                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1"/>
                     <constraints>
-                        <constraint id="207" firstAttribute="height" constant="21"/>
+                        <constraint firstAttribute="height" constant="21" id="207"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                    <color key="textColor" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="183" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="183">
                     <rect key="frame" x="17" y="81" width="281" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                     <nil key="textColor"/>
-                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
+                    <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="184" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="184">
                     <rect key="frame" x="17" y="75" width="281" height="21"/>
-                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
                     <constraints>
-                        <constraint id="208" firstAttribute="height" constant="21"/>
+                        <constraint firstAttribute="height" constant="21" id="208"/>
                     </constraints>
-                    <color key="textColor" colorSpace="calibratedRGB" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                    <color key="textColor" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="185" translatesAutoresizingMaskIntoConstraints="NO" text="32" misplaced="YES">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="32" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="185">
                     <rect key="frame" x="17" y="96" width="281" height="21"/>
-                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
                     <constraints>
-                        <constraint id="210" firstAttribute="height" constant="21"/>
+                        <constraint firstAttribute="height" constant="21" id="210"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                    <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="227" translatesAutoresizingMaskIntoConstraints="NO">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="227">
                     <rect key="frame" x="17" y="131" width="371" height="21"/>
-                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
                     <constraints>
-                        <constraint id="228" firstAttribute="height" constant="21"/>
+                        <constraint firstAttribute="height" constant="21" id="228"/>
                     </constraints>
-                    <color key="textColor" colorSpace="calibratedRGB" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                    <color key="textColor" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="229" translatesAutoresizingMaskIntoConstraints="NO" text="32" misplaced="YES">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="32" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="229">
                     <rect key="frame" x="17" y="152" width="371" height="21"/>
-                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
                     <constraints>
-                        <constraint id="230" firstAttribute="height" constant="21"/>
+                        <constraint firstAttribute="height" constant="21" id="230"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                    <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="231" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" ambiguous="YES">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="231">
                     <rect key="frame" x="49" y="333" width="281" height="21"/>
-                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
                     <constraints>
-                        <constraint id="232" firstAttribute="height" constant="21"/>
+                        <constraint firstAttribute="height" constant="21" id="232"/>
                     </constraints>
-                    <color key="textColor" colorSpace="calibratedRGB" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                    <color key="textColor" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="233" translatesAutoresizingMaskIntoConstraints="NO" text="32" misplaced="YES" ambiguous="YES">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="32" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="233">
                     <rect key="frame" x="66" y="267" width="281" height="21"/>
-                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
                     <constraints>
-                        <constraint id="234" firstAttribute="height" constant="21"/>
+                        <constraint firstAttribute="height" constant="21" id="234"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                    <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="235" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" ambiguous="YES">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="235">
                     <rect key="frame" x="17" y="219" width="281" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="236"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
-                    <constraints>
-                        <constraint id="236" firstAttribute="height" constant="21"/>
-                    </constraints>
-                    <color key="textColor" colorSpace="calibratedRGB" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1"/>
+                    <color key="textColor" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274515" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="237" translatesAutoresizingMaskIntoConstraints="NO" text="32" misplaced="YES" ambiguous="YES">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="32" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="237">
                     <rect key="frame" x="17" y="219" width="281" height="21"/>
-                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
                     <constraints>
-                        <constraint id="238" firstAttribute="height" constant="21"/>
+                        <constraint firstAttribute="height" constant="21" id="238"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                    <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
             </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="182" firstAttribute="top" secondItem="1" secondAttribute="top" constant="19" id="186"/>
+                <constraint firstItem="182" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17" id="187"/>
+                <constraint firstItem="181" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17" id="188"/>
+                <constraint firstItem="181" firstAttribute="top" secondItem="182" secondAttribute="centerY" constant="10" id="189"/>
+                <constraint firstItem="184" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17" id="190"/>
+                <constraint firstItem="184" firstAttribute="top" secondItem="181" secondAttribute="bottom" constant="14" id="191"/>
+                <constraint firstItem="185" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17" id="192"/>
+                <constraint firstItem="185" firstAttribute="top" secondItem="184" secondAttribute="bottom" id="193"/>
+                <constraint firstItem="178" firstAttribute="leading" secondItem="182" secondAttribute="trailing" constant="16" id="204"/>
+                <constraint firstItem="178" firstAttribute="leading" secondItem="181" secondAttribute="trailing" constant="16" id="205"/>
+                <constraint firstItem="178" firstAttribute="leading" secondItem="184" secondAttribute="trailing" constant="16" id="206"/>
+                <constraint firstItem="178" firstAttribute="leading" secondItem="185" secondAttribute="trailing" constant="16" id="212"/>
+                <constraint firstItem="227" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17" id="240"/>
+                <constraint firstItem="227" firstAttribute="top" secondItem="185" secondAttribute="bottom" constant="14" id="241"/>
+                <constraint firstAttribute="trailing" secondItem="178" secondAttribute="trailing" constant="16" id="245"/>
+                <constraint firstItem="178" firstAttribute="top" secondItem="1" secondAttribute="top" constant="28" id="250"/>
+                <constraint firstAttribute="trailing" secondItem="227" secondAttribute="trailing" constant="26" id="251"/>
+                <constraint firstItem="229" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17" id="253"/>
+                <constraint firstItem="229" firstAttribute="top" secondItem="227" secondAttribute="centerY" constant="10" id="254"/>
+                <constraint firstAttribute="trailing" secondItem="229" secondAttribute="trailing" constant="26" id="256"/>
+            </constraints>
             <connections>
-                <outlet property="Name" destination="181" id="name-outlet-181"/>
                 <outlet property="Age" destination="185" id="name-outlet-185"/>
                 <outlet property="Date" destination="229" id="name-outlet-229"/>
+                <outlet property="Name" destination="181" id="name-outlet-181"/>
             </connections>
-            <constraints>
-                <constraint id="186" firstItem="182" firstAttribute="top" secondItem="1" secondAttribute="top" constant="19"/>
-                <constraint id="187" firstItem="182" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17"/>
-                <constraint id="188" firstItem="181" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17"/>
-                <constraint id="189" firstItem="181" firstAttribute="top" secondItem="182" secondAttribute="centerY" constant="10"/>
-                <constraint id="190" firstItem="184" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17"/>
-                <constraint id="191" firstItem="184" firstAttribute="top" secondItem="181" secondAttribute="bottom" constant="14"/>
-                <constraint id="192" firstItem="185" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17"/>
-                <constraint id="193" firstItem="185" firstAttribute="top" secondItem="184" secondAttribute="bottom"/>
-                <constraint id="204" firstItem="178" firstAttribute="leading" secondItem="182" secondAttribute="trailing" constant="16"/>
-                <constraint id="205" firstItem="178" firstAttribute="leading" secondItem="181" secondAttribute="trailing" constant="16"/>
-                <constraint id="206" firstItem="178" firstAttribute="leading" secondItem="184" secondAttribute="trailing" constant="16"/>
-                <constraint id="212" firstItem="178" firstAttribute="leading" secondItem="185" secondAttribute="trailing" constant="16"/>
-                <constraint id="240" firstItem="227" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17"/>
-                <constraint id="241" firstItem="227" firstAttribute="top" secondItem="185" secondAttribute="bottom" constant="14"/>
-                <constraint id="245" firstAttribute="trailing" secondItem="178" secondAttribute="trailing" constant="16"/>
-                <constraint id="250" firstItem="178" firstAttribute="top" secondItem="1" secondAttribute="top" constant="28"/>
-                <constraint id="251" firstAttribute="trailing" secondItem="227" secondAttribute="trailing" constant="26"/>
-                <constraint id="253" firstItem="229" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17"/>
-                <constraint id="254" firstItem="229" firstAttribute="top" secondItem="227" secondAttribute="centerY" constant="10"/>
-                <constraint id="256" firstAttribute="trailing" secondItem="229" secondAttribute="trailing" constant="26"/>
-            </constraints>
         </view>
     </objects>
 </document>

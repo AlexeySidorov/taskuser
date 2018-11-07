@@ -6,7 +6,7 @@ namespace Task3.iOS
 {
     public partial class HeaderView : UIView
     {
-        public HeaderView (IntPtr handle) : base (handle)
+        public HeaderView ()
         {
         }
     }
