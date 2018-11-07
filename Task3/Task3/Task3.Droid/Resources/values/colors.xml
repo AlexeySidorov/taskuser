@@ -13,5 +13,6 @@
   <color name="red">#E33D40</color>
   <color name="transparent">#00e33d40</color>
   <color name="darkGray">#121212</color>
-
+  <color name="dark_title_color">#8f8e94</color>
+  <color name="black">#00000</color>
 </resources>
