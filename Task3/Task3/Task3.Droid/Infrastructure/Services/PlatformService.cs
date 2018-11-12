@@ -1,8 +1,10 @@
 using System;
 using System.IO;
+using Android.Content;
 using Java.Util;
 using Plugin.CurrentActivity;
 using Task3.Core.Services;
+using static Android.Net.Uri;
 
 namespace Task3.Droid.Infrastructure.Services
 {
@@ -56,6 +58,60 @@ namespace Task3.Droid.Infrastructure.Services
             DateTime timeZoneDateTime = NativeDateToDateTime(timeZoneDate);
 
             return timeZoneDateTime.ToLocalTime();
+        }
+
+        public string ShowMapsApplication(double latitude, double longitude)
+        {
+            var geoUri = Parse($"geo:{latitude},{longitude}?q={latitude},{longitude}(My marker)");
+            var mapIntent = new Intent(Intent.ActionView, geoUri);
+
+            try
+            {
+                CrossCurrentActivity.Current.Activity.StartActivity(mapIntent);
+            }
+            catch (Exception)
+            {
+                return "Application not found";
+            }
+
+            return null;
+        }
+
+        public string CallPhone(string phone)
+        {
+            var uri = Parse($"tel:{phone}");
+            var intent = new Intent(Intent.ActionView, uri);
+
+            try
+            {
+                CrossCurrentActivity.Current.Activity.StartActivity(intent);
+            }
+            catch (Exception)
+            {
+                return "Application not found";
+            }
+
+            return null;
+        }
+
+        public string SendEmail(string email)
+        {
+            var emailIntent = new Intent(Intent.ActionSend);
+            emailIntent.PutExtra(Intent.ExtraEmail, new[] { email });
+            emailIntent.PutExtra(Intent.ExtraSubject, "");
+            emailIntent.PutExtra(Intent.ExtraText, "");
+            emailIntent.SetType("message/rfc822");
+
+            try
+            {
+                CrossCurrentActivity.Current.Activity.StartActivity(emailIntent);
+            }
+            catch (Exception)
+            {
+                return "Application not found";
+            }
+
+            return null;
         }
 
         /// <summary>

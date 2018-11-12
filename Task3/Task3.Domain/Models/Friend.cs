@@ -15,4 +15,5 @@ namespace Task3.Domain.Models
         [JsonProperty("id")]
         public int FriendId { get; set; }
     }
+
 }

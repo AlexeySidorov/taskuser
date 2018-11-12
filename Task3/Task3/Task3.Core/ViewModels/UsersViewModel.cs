@@ -46,11 +46,8 @@ namespace Task3.ViewModels
 
         #endregion
 
-
-        public override async void Start()
+        public async void Init(string parameter)
         {
-            base.Start();
-
             var isUsers = await _userService.IsUsers();
             if (!await _connectionService.IsConnectedHost("www.google.com"))
             {

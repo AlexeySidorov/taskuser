@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SQLite;
+using Task3.Core.Attributes;
 using Task3.Core.Data;
 
 namespace Task3.Domain.Models
@@ -18,7 +19,7 @@ namespace Task3.Domain.Models
 
         public int Age { get; set; }
 
-        public string EyeColor { get; set; }
+        public ColorType EyeColor { get; set; }
 
         public string Name { get; set; }
 
@@ -44,8 +45,29 @@ namespace Task3.Domain.Models
         [Ignore]
         public IList<Friend> Friends { get; set; }
 
-        public string FavoriteFruit { get; set; }
+        public Figure FavoriteFruit { get; set; }
 
         public string Gender { get; set; }
+    }
+
+    public enum Figure
+    {
+        [Description("apple")]
+        Apple,
+        [Description("banana")]
+        Banana,
+        [Description("strawberry")]
+        Strawberry
+    }
+
+    public enum ColorType
+    {
+        [Description("brown")]
+        Brown,
+        [Description("blue")]
+        Blue,
+        [Description("green")]
+        Green,
+        None
     }
 }

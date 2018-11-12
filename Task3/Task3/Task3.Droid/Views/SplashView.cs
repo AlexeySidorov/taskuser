@@ -4,7 +4,6 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Transitions;
@@ -20,7 +19,7 @@ namespace Task3.Droid.Views
 {
     [MvxActivityPresentation]
     [Activity(Theme = "@style/AppTheme", ScreenOrientation = ScreenOrientation.Portrait, WindowSoftInputMode = SoftInput.StateAlwaysHidden)]
-    public class SplashView : MvxAppCompatActivity<SplashViewModel>
+    public class SplashView : MvxAppCompatActivity<SplashViewModel>, INavigationActivity
     {
         private int _layout = Resource.Layout.base_view;
 
@@ -32,19 +31,15 @@ namespace Task3.Droid.Views
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
                 SetupWindowAnimations();
 
-            DrawerLayout = (DrawerLayout)FindViewById(Resource.Id.drawer_layout);
             Toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
         }
-
-        /// <summary>
-        /// Drawer layout base activity
-        /// </summary>
-        public DrawerLayout DrawerLayout { get; set; }
 
         /// <summary>
         /// Toolbar base activity
         /// </summary>
         public Toolbar Toolbar { get; set; }
+
+        public DrawerLayout DrawerLayout { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         /// <summary>
         /// WindowAnimations
@@ -72,10 +67,8 @@ namespace Task3.Droid.Views
             var fm = SupportFragmentManager;
             // ReSharper disable once SuspiciousTypeConversion.Global
             var backPressedListener = fm.Fragments.OfType<IBackPressedListener>().FirstOrDefault();
-
-            if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
-                DrawerLayout.CloseDrawers();
-            else if (backPressedListener != null && !backPressedListener.IsBaseBackPressed)
+            
+            if (backPressedListener != null && !backPressedListener.IsBaseBackPressed)
                 backPressedListener.OnBackPressed();
             else if (fm.BackStackEntryCount == 1)
                 Finish();

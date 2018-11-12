@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Task3.Core.Services
 {
@@ -27,6 +28,12 @@ namespace Task3.Core.Services
         /// <returns>The UTCT o local time zone.</returns>
         /// <param name="dateTimeUtc">Date time UTC.</param>
         DateTime ConvertUtcToLocalTimeZone(DateTime dateTimeUtc);
+
+        string ShowMapsApplication(double latitude, double longitude);
+
+        string CallPhone(string phone);
+
+        string SendEmail(string email);
     }
 
     public enum Platform

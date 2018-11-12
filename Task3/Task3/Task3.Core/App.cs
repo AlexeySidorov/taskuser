@@ -1,22 +1,19 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using Task3.Core;
 using Task3.Core.DataBaseService;
 using Task3.Domain.Models;
 using Task3.Services;
-using Task3.ViewModels;
 
 namespace Task3
 {
-    public class App : MvvmCross.Core.ViewModels.MvxApplication
+    public class App : MvxApplication
     {
         public override void Initialize()
         {
-            
             CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
@@ -31,11 +28,8 @@ namespace Task3
 
             //Регистрация сервисов
             typeof(UserService).GetTypeInfo().Assembly.CreatableTypes().Where(t => t.Name.EndsWith("Service")).AsInterfaces();
-
-            //Создание Базы данных
-            Task.Run(() => new DataBase().CreateDataBase(new List<Assembly>() { typeof(User).GetTypeInfo().Assembly }));
-
-            RegisterNavigationServiceAppStart<UsersViewModel>();
+            
+            RegisterAppStart(new CustomApp());
         }
     }
 }

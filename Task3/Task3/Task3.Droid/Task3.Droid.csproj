@@ -29,10 +29,10 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>Только сборки пакета SDK</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidSupportedAbis />
     <Debugger>.Net (Xamarin)</Debugger>
-    <EnableProguard>true</EnableProguard>
+    <EnableProguard>false</EnableProguard>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,18 +45,17 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MvvmCross" Version="5.7.0" />
-    <PackageReference Include="MvvmCross.Binding">
-      <Version>5.7.0</Version>
+    <PackageReference Include="Glide.Xamarin">
+      <Version>4.1.1</Version>
     </PackageReference>
-    <PackageReference Include="MvvmCross.Core" Version="5.7.0" />
-    <PackageReference Include="MvvmCross.Platform" Version="5.7.0" />
-    <PackageReference Include="MvvmCross.Droid.Support.Core.UI" Version="5.7.0" />
-    <PackageReference Include="MvvmCross.Droid.Support.Fragment" Version="5.7.0" />
-    <PackageReference Include="MvvmCross.Droid.Support.V7.AppCompat" Version="5.7.0" />
-    <PackageReference Include="MvvmCross.Droid.Support.V7.RecyclerView" Version="5.7.0" />
-    <PackageReference Include="MvvmCross.Plugin.JsonLocalization">
-      <Version>6.2.1</Version>
+    <PackageReference Include="MvvmCross.Droid.Support.V7.AppCompat">
+      <Version>5.4.2</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Droid.Support.V7.RecyclerView">
+      <Version>5.4.2</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.StarterPack">
+      <Version>5.4.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
@@ -66,6 +65,9 @@
     </PackageReference>
     <PackageReference Include="Plugin.Permissions">
       <Version>3.0.0.12</Version>
+    </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.5.231</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Connectivity">
       <Version>3.2.0</Version>
@@ -94,12 +96,15 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Mono.Android.Export" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Task3.Core\Task3.Core.csproj">
       <Project>{DFB8A7AD-A599-4E8B-A977-1334696CBAFC}</Project>
       <Name>Task3.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Task3.Domain\Task3.Domain.csproj">
+      <Project>{D9843D7A-4EAE-4300-93AF-812583B5E2F9}</Project>
+      <Name>Task3.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Task3.Core\Task3.csproj">
       <Project>{7263181A-A3FF-411F-A5C4-13C27B34D617}</Project>
@@ -107,10 +112,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\drawable-hdpi\" />
-    <Folder Include="Resources\drawable-mdpi\" />
-    <Folder Include="Resources\drawable-xhdpi\" />
-    <Folder Include="Resources\drawable-xxhdpi\" />
+    <AndroidResource Include="Resources\drawable\circle_drawable.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\splash.png" />
@@ -140,13 +142,20 @@
     <Compile Include="Fragments\BaseFragment.cs" />
     <Compile Include="Fragments\FriendFragment.cs" />
     <Compile Include="Fragments\UsersFragment.cs" />
+    <Compile Include="Infrastructure\Adapters\UserAdapter.cs" />
+    <Compile Include="Infrastructure\Converters\FigureResourceConvertor.cs" />
+    <Compile Include="Infrastructure\Converters\UserStatusConvertor.cs" />
     <Compile Include="Infrastructure\Converters\BoolToVisibilityConvertor.cs" />
     <Compile Include="Infrastructure\Converters\ConvertJavaObject.cs" />
     <Compile Include="Infrastructure\Converters\ConvertScreenValue.cs" />
+    <Compile Include="Infrastructure\Holders\UserHolder.cs" />
+    <Compile Include="Infrastructure\Listeners\CustomHolderElementClickListener.cs" />
+    <Compile Include="Infrastructure\Listeners\CustomItemClickListener.cs" />
     <Compile Include="Infrastructure\Managers\KeyboardManager.cs" />
     <Compile Include="Infrastructure\Navigates\IBackPressed.cs" />
     <Compile Include="Infrastructure\Navigates\INavigationActivity.cs" />
     <Compile Include="Infrastructure\Services\ConnectionService.cs" />
+    <Compile Include="Infrastructure\Services\DataBaseService.cs" />
     <Compile Include="Infrastructure\Services\DialogService.cs" />
     <Compile Include="Infrastructure\Services\PlatformService.cs" />
     <Compile Include="Infrastructure\Services\ProgressDialogService.cs" />
@@ -181,6 +190,96 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\strawberry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\not_active_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\banane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\arrow_gray_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\active_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\strawberry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\not_active_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\banane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\arrow_gray_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\active_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\strawberry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\not_active_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\banane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\arrow_gray_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\active_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\active_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\arrow_gray_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\banane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\not_active_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\strawberry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\strawberry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\not_active_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\banane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\arrow_gray_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\active_user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -33,6 +33,13 @@ namespace Task3.Services
         /// <summary>
         /// Получить инфу о пользователях
         /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        Task<IList<User>> GetUserByIds(IList<int> ids);
+
+        /// <summary>
+        /// Получить инфу о пользователях
+        /// </summary>
         /// <returns></returns>
         Task<IList<User>> GetAllUsers(int skip, int count);
 
@@ -119,6 +126,25 @@ namespace Task3.Services
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Получить инфу о пользователях
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        public async Task<IList<User>> GetUserByIds(IList<int> ids)
+        {
+            var users = new List<User>();
+
+            foreach (var userId in ids)
+            {
+                var result = await GetUserById(userId);
+                if (result != null)
+                    users.Add(result);
+            }
+
+            return users;
         }
 
         /// <inheritdoc />

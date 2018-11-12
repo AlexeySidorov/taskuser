@@ -12,7 +12,9 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.AppCompat.Widget;
 using MvvmCross.Droid.Support.V7.RecyclerView;
+using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
+using MvvmCross.Platform.Logging;
 using MvvmCross.Platform.Platform;
 using Task3.Core.Services;
 using Task3.Droid.Infrastructure.Services;
@@ -35,15 +37,19 @@ namespace Task3.Droid
             return new DebugTrace();
         }
 
-        protected override void InitializeLastChance()
+        //protected override MvxLogProviderType GetDefaultLogProviderType()
+        //    => MvxLogProviderType.None;
+
+        protected override void InitializeFirstChance()
         {
             Mvx.RegisterType<IMvxBindingContext, MvxBindingContext>();
             Mvx.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
+            Mvx.LazyConstructAndRegisterSingleton<IDataBaseService, DataBaseService>();
             Mvx.LazyConstructAndRegisterSingleton<IPlatformService, PlatformService>();
             Mvx.LazyConstructAndRegisterSingleton<IConnectionService, ConnectionService>();
             Mvx.LazyConstructAndRegisterSingleton<IProgressDialogService, ProgressDialogService>();
 
-            base.InitializeLastChance();
+            base.InitializeFirstChance();
         }
 
         protected override IEnumerable<Assembly> AndroidViewAssemblies => new List<Assembly>(base.AndroidViewAssemblies)
@@ -67,6 +73,11 @@ namespace Task3.Droid
         {
             MvxAppCompatSetupHelper.FillTargetFactories(registry);
             base.FillTargetFactories(registry);
+        }
+
+        protected override IMvxAndroidViewPresenter CreateViewPresenter()
+        {
+            return new MvxAppCompatViewPresenter(AndroidViewAssemblies);
         }
     }
 }
