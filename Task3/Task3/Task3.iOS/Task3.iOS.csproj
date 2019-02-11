@@ -130,6 +130,10 @@
     <Compile Include="Infrastructure\Services\ProgressDialogService.cs" />
     <Compile Include="Infrastructure\Utils\DateUtility.cs" />
     <Compile Include="Infrastructure\Utils\DeviceSpecific.cs" />
+    <Compile Include="ItemView.cs" />
+    <Compile Include="ItemView.designer.cs">
+      <DependentUpon>ItemView.cs</DependentUpon>
+    </Compile>
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="LoadingOverlay.cs" />
     <Compile Include="Main.cs" />
@@ -139,8 +143,13 @@
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Infrastructure\DataSources\UserViewCell.xib" />
-    <InterfaceDefinition Include="Views\Friend\FriendView.storyboard" />
-    <InterfaceDefinition Include="Views\Friend\HeaderView.xib" />
+    <InterfaceDefinition Include="Views\Friend\FriendView.storyboard">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\SplashView.storyboard">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <None Include="Views\Friend\apple.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -148,9 +157,16 @@
     <Compile Include="TitleWithSubTitle.designer.cs">
       <DependentUpon>TitleWithSubTitle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\BaseView.cs" />
     <Compile Include="Views\Friend\FriendView.cs" />
     <Compile Include="Views\Friend\FriendView.designer.cs">
       <DependentUpon>FriendView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Friend\ItemView.cs" />
+    <Compile Include="Views\Friend\UserHeaderView.cs" />
+    <Compile Include="Views\SplashView.cs" />
+    <Compile Include="Views\SplashView.designer.cs">
+      <DependentUpon>SplashView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UsersView.designer.cs">
       <DependentUpon>UsersView.cs</DependentUpon>

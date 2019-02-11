@@ -8,7 +8,7 @@ using UIKit;
 namespace Task3.iOS.Views
 {
     [MvxFromStoryboard]
-    public partial class UsersView : MvxViewController<UsersViewModel>
+    public partial class UsersView : BaseView<UsersViewModel>
     {
         private UserTableSource _source;
 
@@ -19,10 +19,7 @@ namespace Task3.iOS.Views
         public override void ViewDidLoad()
         {
             Title = "Users";
-
-            UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
-            UIApplication.SharedApplication.StatusBarHidden = false;
-            NavigationController.NavigationBar.BarStyle = UIBarStyle.Default;
+            NavigationItem.HidesBackButton = true;
 
             base.ViewDidLoad();
 
@@ -38,11 +35,13 @@ namespace Task3.iOS.Views
 
         public override void ViewWillAppear(bool animated)
         {
+            NavigationController.SetNavigationBarHidden(false, true);
+
             base.ViewWillAppear(animated);
 
             NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB(114, 0, 202);
             NavigationController.NavigationBar.TintColor = UIColor.White;
-            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White });
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.Black });
         }
 
         private void Binding()
@@ -51,5 +50,11 @@ namespace Task3.iOS.Views
             set.Bind(_source).To(vm => vm.Users).Apply();
             set.Bind(_source).For(s => s.SelectionChangedCommand).To(vm => vm.SelectUserСommand).Apply();
         }
+
+        /// <summary>
+        /// Скрыть/Показать статус бар
+        /// </summary>
+        /// <returns></returns>
+        public override bool PrefersStatusBarHidden() => false;
     }
 }

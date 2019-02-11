@@ -9,7 +9,7 @@ namespace Task3.Droid.Infrastructure.Adapters
 {
     public class UserAdapter : MvxRecyclerAdapter, ICustomHolderElementClickListener
     {
-        public UserAdapter( IMvxAndroidBindingContext bindingContext) : base(bindingContext)
+        public UserAdapter(IMvxAndroidBindingContext bindingContext) : base(bindingContext)
         {
         }
 

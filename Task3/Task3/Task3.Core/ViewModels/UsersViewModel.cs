@@ -13,14 +13,17 @@ namespace Task3.ViewModels
         private readonly IConnectionService _connectionService;
         private readonly IDialogService _dialogService;
         private readonly IUserService _userService;
+        private readonly IProgressDialogService _progressDialogService;
         private AsyncVirtualizingCollection<User> _users;
         private MvxCommand<User> _selectedUserCommand;
+        private MvxCommand _uploadUserCommand;
 
-        public UsersViewModel(IConnectionService connectionService, IDialogService dialogService, IUserService userService)
+        public UsersViewModel(IConnectionService connectionService, IDialogService dialogService, IUserService userService, IProgressDialogService progressDialogService)
         {
             _connectionService = connectionService;
             _dialogService = dialogService;
             _userService = userService;
+            _progressDialogService = progressDialogService;
         }
 
         #region Binding
@@ -44,6 +47,15 @@ namespace Task3.ViewModels
             }
         }
 
+        public ICommand UploadUses—ommand
+        {
+            get
+            {
+                _uploadUserCommand = _uploadUserCommand ?? new MvxCommand(UploadUser);
+                return _uploadUserCommand;
+            }
+        }
+
         #endregion
 
         public async void Init(string parameter)
@@ -64,7 +76,11 @@ namespace Task3.ViewModels
                 if (result != null)
                     await _userService.AddUsers(result);
             }
+        }
 
+        public override void ViewAppeared()
+        {
+            base.ViewAppeared();
             Users = new AsyncVirtualizingCollection<User>(new UserProvider(), 6);
         }
 
@@ -72,6 +88,17 @@ namespace Task3.ViewModels
         {
             if (user != null && user.IsActive)
                 ShowViewModel<FriendViewModel>(user);
+        }
+
+        private async void UploadUser()
+        {
+            _progressDialogService.ShowDialog("Please wait");
+
+            var result = await RestApi.RestRequest.GetUsers();
+            if (result != null)
+                await _userService.AddUsers(result);
+
+            _progressDialogService.CloseDialog();
         }
     }
 }

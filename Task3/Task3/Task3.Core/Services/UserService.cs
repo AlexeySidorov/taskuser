@@ -107,7 +107,7 @@ namespace Task3.Services
             foreach (var user in users)
                 await AddUser(user);
         }
-
+        
         /// <inheritdoc />
         /// <summary>
         /// Получить инфу о пользователе

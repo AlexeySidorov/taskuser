@@ -10,11 +10,11 @@ using Task3.ViewModels;
 
 namespace Task3.Droid.Fragments
 {
-    [MvxFragmentPresentation(typeof(SplashViewModel), Resource.Id.container, true, IsCacheableFragment = true)]
+    [MvxFragmentPresentation(typeof(SplashViewModel), Resource.Id.container, true)]
     public class UsersFragment : BaseFragment<UsersViewModel>, ICustomItemClickListener
     {
         private MvxRecyclerView _recycleView;
-        private IParcelable _listState;
+
         protected override int FragmentId => Resource.Layout.UsersScreen;
 
         /// <summary>
@@ -30,6 +30,8 @@ namespace Task3.Droid.Fragments
             InitViews(view);
             SetTitle("Users");
             InitData();
+
+            HasOptionsMenu = true;
 
             return view;
         }
@@ -53,19 +55,27 @@ namespace Task3.Droid.Fragments
             ViewModel?.SelectUserСommand.Execute(item);
         }
 
-        public override void OnResume()
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
-            base.OnResume();
-
-            if (_listState != null)
-                _recycleView.GetLayoutManager().OnRestoreInstanceState(_listState);
+            inflater.Inflate(Resource.Menu.user_fragment_menu, menu);
+            base.OnCreateOptionsMenu(menu, inflater);
         }
 
-        public override void OnPause()
+        public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            base.OnPause();
+            switch (item.ItemId)
+            {
+                case Resource.Id.refresh_users:
+                    {
+                        ViewModel.UploadUsesСommand.Execute(null);
+                        break;
+                    }
 
-            _listState = _recycleView.GetLayoutManager().OnSaveInstanceState();
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
+
+            return true;
         }
     }
 }

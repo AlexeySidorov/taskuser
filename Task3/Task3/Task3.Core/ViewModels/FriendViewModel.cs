@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
@@ -202,11 +201,12 @@ namespace Task3.ViewModels
         /// Получение данных из viewmodel
         /// </summary>
         /// <param name="parameter"></param>
-        public async void Init(string parameter)
+        public void Init(string parameter)
         {
             if (string.IsNullOrEmpty(parameter) || string.IsNullOrWhiteSpace(parameter)) return;
 
             _user = JsonConvert.DeserializeObject<User>(parameter);
+
             if (_user != null)
             {
                 NameUser = string.IsNullOrEmpty(_user.Name) || string.IsNullOrWhiteSpace(_user.Name) ? "Not specified" : _user.Name;
@@ -222,13 +222,19 @@ namespace Task3.ViewModels
                     : $"Friends by {_user.Name}";
                 Figure = _user.FavoriteFruit;
                 StatusColor = _user.EyeColor;
-                
-                if (_user.Friends == null || _user.Friends.Count == 0) return;
-
-                var friends = await _userService.GetUserByIds(_user.Friends.Select(f => f.FriendId).ToList());
-                Users = new MvxObservableCollection<User>(friends);
             }
         }
+
+        public override async void ViewAppeared()
+        {
+            base.ViewAppeared();
+
+            if (_user?.Friends == null || _user?.Friends.Count == 0) return;
+
+            var friends = await _userService.GetUserByIds(_user.Friends.Select(f => f.FriendId).ToList());
+            Users = new MvxObservableCollection<User>(friends);
+        }
+
         private void MySelectUser(User user)
         {
             if (user != null && user.IsActive)

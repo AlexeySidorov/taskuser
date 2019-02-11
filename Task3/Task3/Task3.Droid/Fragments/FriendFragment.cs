@@ -3,7 +3,6 @@ using Android.OS;
 using Android.Support.V7.Content.Res;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Java.Lang;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Droid.Views.Attributes;
@@ -18,7 +17,6 @@ namespace Task3.Droid.Fragments
     public class FriendsFragment : BaseFragment<FriendViewModel>, ICustomItemClickListener
     {
         private MvxRecyclerView _recycleView;
-        private AppCompatImageView _figureView;
         private View _circleView;
         protected override int FragmentId => Resource.Layout.FriendsScreen;
 
@@ -41,7 +39,6 @@ namespace Task3.Droid.Fragments
         private void InitViews(View view)
         {
             _recycleView = view.FindViewById<MvxRecyclerView>(Resource.Id.friend_list);
-            _figureView = view.FindViewById<AppCompatImageView>(Resource.Id.figure);
             _circleView = view.FindViewById<View>(Resource.Id.circle);
         }
 
@@ -56,7 +53,7 @@ namespace Task3.Droid.Fragments
             var drawable = AppCompatResources.GetDrawable(Activity, Resource.Drawable.circle_drawable);
             if (drawable != null)
             {
-                drawable.SetColorFilter(GetColor(ViewModel.StatusColor), PorterDuff.Mode.Overlay);
+                drawable.SetColorFilter(GetColor(ViewModel.StatusColor), PorterDuff.Mode.SrcAtop);
                 _circleView.Background = drawable;
             }
         }

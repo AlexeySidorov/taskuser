@@ -54,5 +54,19 @@ namespace Task3.iOS.Infrastructure.Services
             return dateTime;
         }
 
+        public string ShowMapsApplication(double latitude, double longitude)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string CallPhone(string phone)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string SendEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -19,5 +19,4 @@ namespace Task3.iOS.Infrastructure.Services
             return conn;
         }
     }
-
 }

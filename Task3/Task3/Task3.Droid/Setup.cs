@@ -14,7 +14,6 @@ using MvvmCross.Droid.Support.V7.AppCompat.Widget;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
-using MvvmCross.Platform.Logging;
 using MvvmCross.Platform.Platform;
 using Task3.Core.Services;
 using Task3.Droid.Infrastructure.Services;
@@ -36,9 +35,6 @@ namespace Task3.Droid
         {
             return new DebugTrace();
         }
-
-        //protected override MvxLogProviderType GetDefaultLogProviderType()
-        //    => MvxLogProviderType.None;
 
         protected override void InitializeFirstChance()
         {
