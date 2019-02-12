@@ -5,6 +5,7 @@ using MvvmCross.iOS.Platform;
 using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Converters;
+using MvvmCross.Platform.Logging;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using Task3.Core.Services;
@@ -45,6 +46,9 @@ namespace Task3.iOS
             base.FillValueConverters(registry);
             registry.AddOrOverwrite("CommandParameter", new MvxCommandParameterValueConverter());
         }
+
+        protected override MvxLogProviderType GetDefaultLogProviderType()
+            => MvxLogProviderType.None;
 
         protected override void InitializeFirstChance()
         {
