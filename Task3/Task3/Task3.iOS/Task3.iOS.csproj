@@ -118,6 +118,7 @@
       <DependentUpon>HeaderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Converters\ActiveUserToImageConvert.cs" />
+    <Compile Include="Infrastructure\Converters\StatusColorConvertor.cs" />
     <Compile Include="Infrastructure\Converters\FigureResourceConvertor.cs" />
     <Compile Include="Infrastructure\Converters\NullToTextConvert.cs" />
     <Compile Include="Infrastructure\Converters\HiddenConvert.cs" />

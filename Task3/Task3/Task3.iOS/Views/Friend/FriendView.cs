@@ -36,6 +36,8 @@ namespace Task3.iOS.Views.Friend
             UsersTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
             UsersTableView.ReloadData();
 
+            Status.Layer.CornerRadius = Status.Frame.Height / 2;
+
             Binding();
 
             View.BackgroundColor = UIColor.White;
@@ -57,6 +59,7 @@ namespace Task3.iOS.Views.Friend
             set.Bind(UserPhone.Tap()).For(u => u.Command).To(vm => vm.CallCommand).Apply();
             set.Bind(Coordinates.Tap()).For(u => u.Command).To(vm => vm.ShowMapCommand).Apply();
             set.Bind(Figure).For(v => v.Image).To(vm => vm.Figure).WithConversion<FigureResourceConvertor>().Apply();
+            set.Bind(Status).For(v => v.BackgroundColor).To(vm => vm.StatusColor).WithConversion<StatusColorConvertor>().Apply();
             set.Bind(_source).To(vm => vm.Users).Apply();
             set.Bind(_source).For(s => s.SelectionChangedCommand).To(vm => vm.SelectUserСommand).Apply();
         }

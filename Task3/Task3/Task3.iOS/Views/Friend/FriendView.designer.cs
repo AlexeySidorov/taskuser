@@ -31,6 +31,10 @@ namespace Task3.iOS.Views.Friend
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView Status { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel UserAddress { get; set; }
 
         [Outlet]
@@ -81,6 +85,11 @@ namespace Task3.iOS.Views.Friend
             if (FriendsListTitle != null) {
                 FriendsListTitle.Dispose ();
                 FriendsListTitle = null;
+            }
+
+            if (Status != null) {
+                Status.Dispose ();
+                Status = null;
             }
 
             if (UserAddress != null) {
