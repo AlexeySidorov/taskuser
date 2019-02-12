@@ -60,11 +60,7 @@ namespace Task3.iOS.Infrastructure.Services
 
         public string ShowMapsApplication(double latitude, double longitude)
         {
-            Task.Run(async () =>
-            {
-                await CrossExternalMaps.Current.NavigateTo("My point", latitude, longitude);
-            });
-
+            CrossExternalMaps.Current.NavigateTo("My point", latitude, longitude);
             return null;
         }
 
@@ -72,8 +68,7 @@ namespace Task3.iOS.Infrastructure.Services
         {
             if (string.IsNullOrEmpty(phone)) return null;
 
-            var localPhone = $"tel: {PhoneNumberUtil.Normalize(phone)}";
-            var phoneUrl = new NSUrl(localPhone);
+            var phoneUrl = new NSUrl($"tel:{PhoneNumberUtil.Normalize(phone)}");
 
             if (!UIApplication.SharedApplication.OpenUrl(phoneUrl))
             {

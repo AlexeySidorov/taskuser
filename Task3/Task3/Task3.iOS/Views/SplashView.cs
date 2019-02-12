@@ -46,6 +46,6 @@ namespace Task3.iOS.Views
         /// Скрыть/Показать статус бар
         /// </summary>
         /// <returns></returns>
-        public override bool PrefersStatusBarHidden() => true;
+        public override bool PrefersStatusBarHidden() => false;
     }
 }
