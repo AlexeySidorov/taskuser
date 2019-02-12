@@ -30,6 +30,7 @@ namespace Task3.iOS.Views
             UsersTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
             UsersTableView.ReloadData();
 
+            InitBarButtons();
             Binding();
         }
 
@@ -49,6 +50,13 @@ namespace Task3.iOS.Views
             var set = this.CreateBindingSet<UsersView, UsersViewModel>();
             set.Bind(_source).To(vm => vm.Users).Apply();
             set.Bind(_source).For(s => s.SelectionChangedCommand).To(vm => vm.SelectUserСommand).Apply();
+        }
+
+        private void InitBarButtons()
+        {
+            var uploadButton = new UIBarButtonItem(UIBarButtonSystemItem.Refresh);
+            uploadButton.Clicked += delegate { ViewModel.UploadUsesСommand.Execute(null); };
+            NavigationItem?.SetRightBarButtonItem(uploadButton, true);
         }
 
         /// <summary>

@@ -75,6 +75,8 @@ namespace Task3.ViewModels
                 var result = await RestApi.RestRequest.GetUsers();
                 if (result != null)
                     await _userService.AddUsers(result);
+
+                Users = new AsyncVirtualizingCollection<User>(new UserProvider(), 6);
             }
         }
 
