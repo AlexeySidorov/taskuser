@@ -1,6 +1,10 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Foundation;
+using MessageUI;
+using PhoneNumbers;
+using Plugin.ExternalMaps;
 using Task3.Core.Services;
 using Task3.iOS.Infrastructure.Utils;
 using UIKit;
@@ -56,17 +60,45 @@ namespace Task3.iOS.Infrastructure.Services
 
         public string ShowMapsApplication(double latitude, double longitude)
         {
-            throw new NotImplementedException();
+            Task.Run(async () =>
+            {
+                await CrossExternalMaps.Current.NavigateTo("My point", latitude, longitude);
+            });
+
+            return null;
         }
 
         public string CallPhone(string phone)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(phone)) return null;
+
+            var localPhone = $"tel: {PhoneNumberUtil.Normalize(phone)}";
+            var phoneUrl = new NSUrl(localPhone);
+
+            if (!UIApplication.SharedApplication.OpenUrl(phoneUrl))
+            {
+                var alertController = UIAlertController.Create("Not supported", "Scheme 'tel:' is not supported on this device",
+                    UIAlertControllerStyle.Alert);
+                alertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, alert => { }));
+                UIApplication.SharedApplication.KeyWindow?.RootViewController.PresentViewController(alertController, true, null);
+            }
+
+            return null;
         }
 
         public string SendEmail(string email)
         {
-            throw new NotImplementedException();
+            if (MFMailComposeViewController.CanSendMail)
+            {
+                var mail = new MFMailComposeViewController();
+                mail.SetMessageBody("", false);
+                mail.SetToRecipients(new[] { email });
+                UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(mail, true, () => { });
+            }
+            else
+                return "Application not found";
+
+            return null;
         }
     }
 }

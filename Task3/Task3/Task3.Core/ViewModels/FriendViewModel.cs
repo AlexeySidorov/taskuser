@@ -38,25 +38,25 @@ namespace Task3.ViewModels
 
         #region Binding
 
-        public string NameUser
+        public string UserName
         {
             get => _nameUser;
             set
             {
                 if (value == _nameUser) return;
                 _nameUser = value;
-                RaisePropertyChanged(() => NameUser);
+                RaisePropertyChanged(() => UserName);
             }
         }
 
-        public string AgeUser
+        public string UserAge
         {
             get => _ageUser;
             set
             {
                 if (value == _ageUser) return;
                 _ageUser = value;
-                RaisePropertyChanged(() => AgeUser);
+                RaisePropertyChanged(() => UserAge);
             }
         }
 
@@ -209,8 +209,8 @@ namespace Task3.ViewModels
 
             if (_user != null)
             {
-                NameUser = string.IsNullOrEmpty(_user.Name) || string.IsNullOrWhiteSpace(_user.Name) ? "Not specified" : _user.Name;
-                AgeUser = _user.Age.ToString();
+                UserName = string.IsNullOrEmpty(_user.Name) || string.IsNullOrWhiteSpace(_user.Name) ? "Not specified" : _user.Name;
+                UserAge = _user.Age.ToString();
                 DateReg = _user.Registered.ToString("HH:mm dd.MM.yy");
                 Email = string.IsNullOrEmpty(_user.Email) || string.IsNullOrWhiteSpace(_user.Email) ? "Not specified" : _user.Email;
                 Phone = string.IsNullOrEmpty(_user.Phone) || string.IsNullOrWhiteSpace(_user.Phone) ? "Not specified" : _user.Phone;
