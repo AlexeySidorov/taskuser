@@ -58,7 +58,7 @@ namespace Task3.ViewModels
 
         #endregion
 
-        public async void Init(string parameter)
+        public override async void ViewAppeared()
         {
             var isUsers = await _userService.IsUsers();
             if (!await _connectionService.IsConnectedHost("www.google.com"))
@@ -75,14 +75,10 @@ namespace Task3.ViewModels
                 var result = await RestApi.RestRequest.GetUsers();
                 if (result != null)
                     await _userService.AddUsers(result);
-
-                Users = new AsyncVirtualizingCollection<User>(new UserProvider(), 6);
             }
-        }
 
-        public override void ViewAppeared()
-        {
             base.ViewAppeared();
+
             Users = new AsyncVirtualizingCollection<User>(new UserProvider(), 6);
         }
 

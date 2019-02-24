@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-				    app:MvxBind="Text NameUser"/>
+				    app:MvxBind="Text UserName"/>
 
                 <View
 					android:id="@+id/circle"
@@ -72,7 +72,7 @@
                 android:layout_below="@id/age_title"
                 android:textColor="@color/black"
                 android:textSize="15sp" 
-		   	    app:MvxBind="Text AgeUser"/>
+		   	    app:MvxBind="Text UserAge"/>
 
         </RelativeLayout>
 
